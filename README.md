@@ -6,7 +6,7 @@ Features:
 - REST API
 - Replication
 - High Availability
-- Storage backends:
+- Storage backends: S3, Minio, Garage, Ceph
 - Packages: Helm, Docker
 - LDAP
 - Images scan and sign
