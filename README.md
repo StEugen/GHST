@@ -1,9 +1,8 @@
-# kYRHs
-Yet Registry Here for kubernetes
+# GHST
+GHoST is simple, small registry, that won't be noticed =)
 
-Simple fast-to-deploy registry
 
-Features:
+Features (i'd like to implement):
 - REST API
 - Replication
 - High Availability
