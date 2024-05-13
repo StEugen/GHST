@@ -1,6 +1,7 @@
 # kYRHs
 Yet Registry Here for kubernetes
 
+Simple fast-to-deploy registry
 
 Features:
 - REST API
