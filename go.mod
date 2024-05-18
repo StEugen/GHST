@@ -1,4 +1,4 @@
-module github.com/steugen/kyrhs
+module github.com/steugen/ghst
 
 go 1.21.6
 
