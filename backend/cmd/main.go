@@ -4,7 +4,10 @@ import (
     "net/http"
     "os"
     "path/filepath"
-    "github.com/steugen/kyrhs/backend/internal/models"
+
+    "github.com/steugen/ghst/backend/internal/models"
+    "github.com/steugen/ghst/backend/api/v1"
+
     "gorm.io/driver/sqlite"
     "gorm.io/gorm"
 )
