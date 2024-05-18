@@ -1,49 +1,49 @@
 package main
 
 import (
-    "net/http"
+    
     "os"
     "path/filepath"
 
-    "github.com/steugen/ghst/backend/internal/models"
+    "github.com/gin-gonic/gin"
     "github.com/steugen/ghst/backend/api/v1"
-
+    "github.com/steugen/ghst/backend/internal/models"
     "gorm.io/driver/sqlite"
     "gorm.io/gorm"
 )
 
 func main() {
+    
     db, err := gorm.Open(sqlite.Open("db/test.db"), &gorm.Config{})
     if err != nil {
         panic("failed to connect database")
     }
 
+    
     err = db.AutoMigrate(&models.User{}, &models.Image{})
     if err != nil {
         panic("failed to migrate database")
     }
+
+    r := gin.Default()
+
+    r.POST("/api/v1/upload", api.UploadImage(db))
 
     dir, err := filepath.Abs("./frontend/.next")
     if err != nil {
         panic(err)
     }
 
-    fileServer := http.FileServer(http.Dir(dir))
-    http.Handle("/_next/", http.StripPrefix("/_next/", fileServer))
-
-    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        http.ServeFile(w, r, filepath.Join(dir, "index.html"))
-    })
+    r.Static("/_next", dir)
+    r.StaticFile("/", filepath.Join(dir, "index.html"))
 
     port := os.Getenv("PORT")
     if port == "" {
         port = "9000"
     }
     println("Server listening on port " + port)
-    err = http.ListenAndServe(":"+port, nil)
-    if err != nil {
+    if err := r.Run(":" + port); err != nil {
         panic(err)
     }
 }
-
 

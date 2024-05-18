@@ -4,7 +4,7 @@ import (
     "net/http"
     "os"
     "path/filepath"
-    "github.com/steugen/ghst/backend/models"
+    "github.com/steugen/ghst/backend/internal/models"
     "github.com/gin-gonic/gin"
     "gorm.io/gorm"
     
